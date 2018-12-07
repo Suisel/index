@@ -7,6 +7,8 @@ from htmlparser import HTMLParser
 #from docxxmlparser import DocxXMLParser
 import csv
 import requests
+from datetime import datetime
+import  time
 
 
 # def pdfminer():
@@ -100,30 +102,39 @@ def build_index(file_read, file_write):
                 b = row[1]
 
 
-def find_word(word):
-    filename = '/home/elavelina/PycharmProjects/parsers-master/mypkg/files/index_test.csv'
+def find_word(word, filename):
     with open(filename, "r") as file_read:
         reader = csv.reader(file_read)
         for row in reader:
             if (row[0] == word):
                 print(row)
                 print(len(row) - 1)
+                break
 
 
 if __name__ == '__main__':
-    file_all_links = '/home/elavelina/PycharmProjects/parsers-master/mypkg/files/all_links_test.csv'
-    all_links = get_links(file_all_links)
 
-    file_map_words = '/home/elavelina/PycharmProjects/parsers-master/mypkg/files/map_words_test.csv'
-    get_map_list(file_map_words)
+    start_time = datetime.now()
+
+    # file_all_links = '/home/elavelina/PycharmProjects/parsers-master/mypkg/files/all_links_msu.csv'
+    # all_links = get_links(file_all_links)
+    #
+    # file_map_words = '/home/elavelina/PycharmProjects/parsers-master/mypkg/files/map_words_msu.csv'
+    # get_map_list(file_map_words)
 
     # сортировка для тестирования на маленьких файлах
-    # file_read = '/home/elavelina/PycharmProjects/parsers-master/mypkg/files/map_words_test.csv'
-    # file_write = '/home/elavelina/PycharmProjects/parsers-master/mypkg/files/sorted_map_words_test.csv'
+    # file_read = '/home/elavelina/PycharmProjects/parsers-master/mypkg/files/map_words_msu.csv'
+    # file_write = '/home/elavelina/PycharmProjects/parsers-master/mypkg/files/sorted_map_words_msu.csv'
     # sort_list(file_read, file_write)
 
-    file_read = '/home/elavelina/PycharmProjects/parsers-master/mypkg/files/sorted_map_words_test.csv'
-    file_write = '/home/elavelina/PycharmProjects/parsers-master/mypkg/files/index_test.csv'
-    build_index(file_read, file_write)
-    find_word('kropachev')
-    find_word('кропачев')
+    # file_read = '/home/elavelina/PycharmProjects/parsers-master/mypkg/files/msu/sorted_map_words_msu.csv'
+    # file_write = '/home/elavelina/PycharmProjects/parsers-master/mypkg/files/msu/index_msu.csv'
+    # build_index(file_read, file_write)
+
+    used_index = '/home/elavelina/PycharmProjects/parsers-master/mypkg/files/spbu/index_spbu.csv'
+    # find_word('kropachev', used_index)
+    find_word('кропачев', used_index)
+    # find_word('садовничий', used_index)
+    # find_word('sadovnichy', used_index)
+
+    print(datetime.now() - start_time)
