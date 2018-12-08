@@ -103,13 +103,17 @@ def build_index(file_read, file_write):
 
 
 def find_word(word, filename):
+    f = 0
     with open(filename, "r") as file_read:
         reader = csv.reader(file_read)
         for row in reader:
             if (row[0] == word):
                 print(row)
                 print(len(row) - 1)
+                f = 1
                 break
+    if (f == 0):
+        print('Nothing was found')
 
 
 if __name__ == '__main__':
@@ -133,8 +137,14 @@ if __name__ == '__main__':
 
     used_index = '/home/elavelina/PycharmProjects/parsers-master/mypkg/files/spbu/index_spbu.csv'
     # find_word('kropachev', used_index)
-    find_word('кропачев', used_index)
+    find_word('лавелина', used_index)
     # find_word('садовничий', used_index)
     # find_word('sadovnichy', used_index)
+
+    # filename = '/home/elavelina/PycharmProjects/parsers-master/mypkg/files/test/index_test.csv'
+    # with open(filename, "r") as file_read:
+    #     reader = csv.reader(file_read)
+    #     for row in reader:
+    #         print(row)
 
     print(datetime.now() - start_time)
