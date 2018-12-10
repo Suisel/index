@@ -8,6 +8,7 @@ from htmlparser import HTMLParser
 import csv
 import requests
 from datetime import datetime
+import re
 import  time
 
 
@@ -104,16 +105,21 @@ def build_index(file_read, file_write):
 
 def find_word(word, filename):
     f = 0
+    # count = 0
     with open(filename, "r") as file_read:
         reader = csv.reader(file_read)
         for row in reader:
-            if (row[0] == word):
+            # count = count + 1
+            # print(row)
+            # if (row[0] == word):
+            if (re.match(r'садовнич\w+\d*',row[0])):
                 print(row)
                 print(len(row) - 1)
                 f = 1
-                break
+                # break
     if (f == 0):
         print('Nothing was found')
+    # print(count)
 
 
 if __name__ == '__main__':
@@ -135,11 +141,11 @@ if __name__ == '__main__':
     # file_write = '/home/elavelina/PycharmProjects/parsers-master/mypkg/files/msu/index_msu.csv'
     # build_index(file_read, file_write)
 
-    used_index = '/home/elavelina/PycharmProjects/parsers-master/mypkg/files/spbu/index_spbu.csv'
-    # find_word('kropachev', used_index)
-    find_word('лавелина', used_index)
+    used_index = '/home/elavelina/PycharmProjects/parsers-master/mypkg/files/msu/index_msu.csv'
+    #find_word('kropachev', used_index)
     # find_word('садовничий', used_index)
-    # find_word('sadovnichy', used_index)
+    # find_word('садовничий', used_index)
+    find_word('Sadovnichy', used_index)
 
     # filename = '/home/elavelina/PycharmProjects/parsers-master/mypkg/files/test/index_test.csv'
     # with open(filename, "r") as file_read:
